@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EMediApp</string>
+    <string name="hello_round">"Hello round world \n\n"</string>
+    <string name="measInProcess">"Pulsmessung läuft ...\n"</string>
+    <string name="hello_square">Hello Square World!</string>
+    <string name="pulsrateSPhone_text">Pulsrate</string>
+
+</resources>

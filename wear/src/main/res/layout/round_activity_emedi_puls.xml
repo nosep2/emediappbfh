@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context=".EMediPulsActivity"
+    tools:deviceIds="wear_round">
+
+    <!-- Corina von Kaenel: Darstellung des Titels "Pulsmessung laeuft..." und darunter die Anzeige der Pulsmessung,
+    beide mittig (vertikal) -->
+    <TextView android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:text="@string/measInProcess" />
+    <TextView
+        android:id="@+id/heartrate_text"
+        android:layout_below="@+id/text"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="puls" />
+
+
+</RelativeLayout>
