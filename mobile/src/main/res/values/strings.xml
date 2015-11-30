@@ -22,6 +22,7 @@
     </string>
     <string name="addMedIntake_button">Medikamenteneinnahme registrieren</string>
 
+    <string name="medieinnahmeErfasst_toast">Medikamenteneinnahme "1 Tablette Beispielmedi 9:45" erfasst</string>
 
     <string name="action_settings">Settings</string>
 </resources>
