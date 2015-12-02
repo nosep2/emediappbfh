@@ -1,9 +1,14 @@
 package clinappteam2hs15.emediapp;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import simulationData.Medicationplan;
+
+import static clinappteam2hs15.emediapp.R.drawable.mr_ic_play_light;
 
 /*
 * Activity der Startseite
@@ -31,10 +38,12 @@ import simulationData.Medicationplan;
 
 
 public class MainPageActivity extends AppCompatActivity {
+    public static final int NOTIFICATION_ID = 1;
 
     private Button mAddMediIntakeButton;
     private Medicationplan mMedicationplan;
     private TextView mMedicationView;
+    private Button mMediRemNotificationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,15 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainPageActivity.this, R.string.medieinnahmeErfasst_toast, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Temporaer soll dieser Button eine mediNotifikation auslösen
+        mMediRemNotificationButton = (Button) findViewById(R.id.mediIntakeReminder_button);
+        mMediRemNotificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            onMedReminderButtonClick(v);
             }
         });
 
@@ -91,4 +109,36 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
         }
         return super.onOptionsItemSelected(item);
     }
+
+    // (author cvk) fuer Notifikationserzeugung auch bei geschlossener App
+    private PendingIntent getActivityPendingIntent() {
+        Intent activityIntent = new Intent(this, MainPageActivity.class);
+        activityIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        return PendingIntent.getActivity(this, 0, activityIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+    // (author cvk) 1. Schritt der Notifikationserstellung auf Knopfdruck und mit Fixtext
+    // ToDo: Notifikation aufgrund geplanter Uhrzeit starten und Daten für die Erinnerung auslesen
+    public void onMedReminderButtonClick(View view) {
+
+        PendingIntent medReminderPendingIntent = getActivityPendingIntent();
+
+        Notification medicationNotification = new NotificationCompat.Builder(this)
+                .setContentTitle("Dafalgan 500mg")
+                .setContentText("Einnahme für 6 Uhr geplant")
+                .setSmallIcon(mr_ic_play_light)
+                .setContentIntent(medReminderPendingIntent)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(NOTIFICATION_ID, medicationNotification);
+
+    }
+    public void onUpdateStandardNotificationButtonClick(View view) {
+
+    }
+
+
+
 }

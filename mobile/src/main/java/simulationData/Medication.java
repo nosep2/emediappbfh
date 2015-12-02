@@ -11,14 +11,16 @@ package simulationData;
  */
 public class Medication {
 
+    private int mNumber;
     private String mMedi;
     private String mVerschreibungsArt;
     private String mVerschreibung;
     private String mEinnahmeDauer;
     private String mVerschreiber;
 
-    public Medication (String medi, String verschreibungsArt, String verschreibung, String einnahmeDauer,  String verschreiber){
+    public Medication (int number, String medi, String verschreibungsArt, String verschreibung, String einnahmeDauer,  String verschreiber){
 
+        mNumber = number;
         mMedi = medi;
         mVerschreibungsArt = verschreibungsArt;
         mVerschreibung = verschreibung;
@@ -26,25 +28,7 @@ public class Medication {
         mVerschreiber = verschreiber;
     }
 
-    public void setmMedi(String mMedi) {
-        this.mMedi = mMedi;
-    }
-
-    public void setmVerschreibungsArt(String mVerschreibungsArt) {
-        this.mVerschreibungsArt = mVerschreibungsArt;
-    }
-
-    public void setmVerschreibung(String mVerschreibung) {
-        this.mVerschreibung = mVerschreibung;
-    }
-
-    public void setmEinnahmeDauer(String mEinnahmeDauer) {
-        this.mEinnahmeDauer = mEinnahmeDauer;
-    }
-
-    public void setmVerschreiber(String mVerschreiber) {
-        this.mVerschreiber = mVerschreiber;
-    }
+    public int getmNumber() { return mNumber;}
 
     public String getmMedi() {
         return mMedi;
