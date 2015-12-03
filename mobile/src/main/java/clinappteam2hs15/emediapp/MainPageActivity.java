@@ -52,6 +52,8 @@ public class MainPageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +131,8 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
                 .setSmallIcon(mr_ic_play_light)
                 .setContentIntent(medReminderPendingIntent)
                 .setPriority(Notification.PRIORITY_HIGH)
+                // Visibility Private reduziert bei gelocktem Screen den Informationsgehalt der Notification
+                .setVisibility(Notification.VISIBILITY_PRIVATE)
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
