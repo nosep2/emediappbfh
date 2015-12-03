@@ -21,7 +21,7 @@ public class Medicationplan {
         if (!mMediplan.isEmpty())
         {mMediplan.clear();}
 
-        mMediplan.add(new Medication(1001, "Allopur 100mg", "standard", "morgens: 1 Tablette", "ab 12.Aug", "SPZ Biel, Innere Medizin, 2503 Biel"));
+        mMediplan.add(new Medication(1001, "Allopur 100mg","Tablette", "standard", "morgens: 1 Tablette", "ab 12.Aug", "noEnd", "SPZ Biel, Innere Medizin, 2503 Biel", "Gicht - Senkung der Harnsäure"));
 
     }
 

@@ -13,19 +13,25 @@ public class Medication {
 
     private int mNumber;
     private String mMedi;
+    private String mApplikationsform;
     private String mVerschreibungsArt;
     private String mVerschreibung;
+    private String mEinnahmestart;
     private String mEinnahmeDauer;
     private String mVerschreiber;
+    private String mHinweiseBemerkung;
 
-    public Medication (int number, String medi, String verschreibungsArt, String verschreibung, String einnahmeDauer,  String verschreiber){
+    public Medication (int number, String medi, String applikationsform, String verschreibungsArt, String verschreibung, String einnahmestart ,String einnahmeDauer,  String verschreiber, String hinweiseBemerkung){
 
         mNumber = number;
         mMedi = medi;
+        mApplikationsform = applikationsform;
         mVerschreibungsArt = verschreibungsArt;
         mVerschreibung = verschreibung;
+        mEinnahmestart = einnahmestart;
         mEinnahmeDauer = einnahmeDauer;
         mVerschreiber = verschreiber;
+        mHinweiseBemerkung = hinweiseBemerkung;
     }
 
     public int getmNumber() { return mNumber;}
@@ -33,6 +39,7 @@ public class Medication {
     public String getmMedi() {
         return mMedi;
     }
+    public String getmApplikationsform() { return mApplikationsform; }
     public String getmVerschreibungsArt() {
         return mVerschreibungsArt;
     }
@@ -41,6 +48,8 @@ public class Medication {
         return mVerschreibung;
     }
 
+    public String getmEinnahmestart() { return mEinnahmestart; }
+
     public String getmEinnahmeDauer() {
         return mEinnahmeDauer;
     }
@@ -48,6 +57,7 @@ public class Medication {
     public String getmVerschreiber() {
         return mVerschreiber;
     }
+    public String getmHinweiseBemerkung() { return mHinweiseBemerkung; }
 
     public String toString() {
         return getmMedi() + " " + getmVerschreibung() + " " + getmVerschreiber();
