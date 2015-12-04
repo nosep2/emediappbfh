@@ -111,7 +111,10 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
         }
         return super.onOptionsItemSelected(item);
     }
-
+    /*Manuel Pfister-->*/
+    public void buttondruck (View view){
+        setContentView(R.layout.layout2);
+    }
     // (author cvk) fuer Notifikationserzeugung auch bei geschlossener App
     private PendingIntent getActivityPendingIntent() {
         Intent activityIntent = new Intent(this, MainPageActivity.class);

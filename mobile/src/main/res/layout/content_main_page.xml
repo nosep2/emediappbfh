@@ -38,6 +38,14 @@
             android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/text_margin"
             />
 
+        <!--Manuel Pfister-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/second_View"
+            android:onClick="buttondruck"
+            android:id="@+id/button" />
+
         <Button
             android:id="@+id/addMedIntake_button"
             android:layout_width="wrap_content"

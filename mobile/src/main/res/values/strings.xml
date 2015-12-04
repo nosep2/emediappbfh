@@ -24,5 +24,9 @@
 
     <string name="medieinnahmeErfasst_toast">Medikamenteneinnahme "1 Tablette Beispielmedi 9:45" erfasst</string>
 
+
     <string name="action_settings">Settings</string>
+    <!--Manuel Pfister-->
+    <string name="second_View">Change 2.View Button</string>
+
 </resources>
