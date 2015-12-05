@@ -146,7 +146,7 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
 
     }
 
-    // hier kommt der Button von Manuel
+
 
 
 }
