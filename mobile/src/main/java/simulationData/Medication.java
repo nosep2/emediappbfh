@@ -13,6 +13,7 @@ public class Medication {
 
     private int mNumber;
     private String mMedi;
+    private String mWirkstoff;
     private String mApplikationsform;
     private String mVerschreibungsArt;
     private String mVerschreibung;
@@ -21,10 +22,11 @@ public class Medication {
     private String mVerschreiber;
     private String mHinweiseBemerkung;
 
-    public Medication (int number, String medi, String applikationsform, String verschreibungsArt, String verschreibung, String einnahmestart ,String einnahmeDauer,  String verschreiber, String hinweiseBemerkung){
+    public Medication (int number, String medi, String wirkstoff, String applikationsform, String verschreibungsArt, String verschreibung, String einnahmestart ,String einnahmeDauer,  String verschreiber, String hinweiseBemerkung){
 
         mNumber = number;
         mMedi = medi;
+        mWirkstoff = wirkstoff;
         mApplikationsform = applikationsform;
         mVerschreibungsArt = verschreibungsArt;
         mVerschreibung = verschreibung;
@@ -39,6 +41,11 @@ public class Medication {
     public String getmMedi() {
         return mMedi;
     }
+
+    public String getmWirkstoff() {
+        return mWirkstoff;
+    }
+
     public String getmApplikationsform() { return mApplikationsform; }
     public String getmVerschreibungsArt() {
         return mVerschreibungsArt;

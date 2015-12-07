@@ -19,8 +19,6 @@ import android.widget.Toast;
 
 import simulationData.Medicationplan;
 
-import static clinappteam2hs15.emediapp.R.drawable.mr_ic_play_light;
-
 /*
 * Activity der Startseite
 *
@@ -72,14 +70,14 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        // Temporaer soll dieser Button eine mediNotifikation auslösen
+        /* Temporaer soll dieser Button eine mediNotifikation auslösen
         mMediRemNotificationButton = (Button) findViewById(R.id.mediIntakeReminder_button);
         mMediRemNotificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             onMedReminderButtonClick(v);
             }
-        });
+        }); */
 
 /*
 ToDo: auf 2. Menuinhalt verschieben.
@@ -111,10 +109,12 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
         }
         return super.onOptionsItemSelected(item);
     }
-    /*Manuel Pfister-->*/
+    /*Manuel Pfister*/
     public void buttondruck (View view){
         setContentView(R.layout.layout2);
     }
+
+
     // (author cvk) fuer Notifikationserzeugung auch bei geschlossener App
     private PendingIntent getActivityPendingIntent() {
         Intent activityIntent = new Intent(this, MainPageActivity.class);
@@ -122,6 +122,7 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
         return PendingIntent.getActivity(this, 0, activityIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
+
     // (author cvk) 1. Schritt der Notifikationserstellung auf Knopfdruck und mit Fixtext
     // ToDo: Notifikation aufgrund geplanter Uhrzeit starten und Daten für die Erinnerung auslesen
     public void onMedReminderButtonClick(View view) {
@@ -129,13 +130,15 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
         PendingIntent medReminderPendingIntent = getActivityPendingIntent();
 
         Notification medicationNotification = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_2pill)
                 .setContentTitle("Dafalgan 500mg")
                 .setContentText("Einnahme für 6 Uhr geplant")
-                .setSmallIcon(mr_ic_play_light)
                 .setContentIntent(medReminderPendingIntent)
                 .setPriority(Notification.PRIORITY_HIGH)
-                // Visibility Private reduziert bei gelocktem Screen den Informationsgehalt der Notification
-                .setVisibility(Notification.VISIBILITY_PRIVATE)
+                /* Visibility Private reduziert bei gelocktem Screen den Informationsgehalt der Notification
+                .setVisibility(Notification.VISIBILITY_PRIVATE) */
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setCategory(Notification.CATEGORY_STATUS)
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);

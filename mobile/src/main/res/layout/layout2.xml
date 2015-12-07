@@ -16,3 +16,4 @@
         android:id="@+id/analogClock"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
+
