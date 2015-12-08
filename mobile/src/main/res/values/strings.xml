@@ -29,7 +29,9 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!--Manuel Pfister-->
-    <string name="second_View">Change 2.View Button</string>
+    <string name="second_View_TextButton">Change 2.View Button</string>
+    <string name="next">Next</string>
+    <string name="title_activity_sub">SubActivity</string>
 
 
 </resources>

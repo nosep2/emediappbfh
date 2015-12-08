@@ -99,11 +99,5 @@ public class MainOverviewTab extends Fragment {
     }
 
 
-    /*Manuel Pfister
-    public void buttondruck (View view){
-        setContentView(R.layout.layout2);
-    }*/
-
-
 
 }

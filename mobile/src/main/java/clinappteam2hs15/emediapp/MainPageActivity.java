@@ -1,5 +1,12 @@
 package clinappteam2hs15.emediapp;
 
+import android.app.Activity;
+import android.view.View.OnClickListener;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
+import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -58,7 +65,6 @@ public class MainPageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,12 +105,13 @@ public class MainPageActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        /*Manuel Pfister*/
+        if (id==R.id.navigate){
+            startActivity(new Intent (this, SubActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
-   
-
-   
 
     /**
      * A placeholder fragment containing a simple view.
@@ -179,6 +186,11 @@ public class MainPageActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    /*Manuel Pfister*/
+    public void ZweitViewWechselTextButton (View view){
+        setContentView(R.layout.layout2);
     }
 
 }
