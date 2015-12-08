@@ -1,7 +1,10 @@
 package clinappteam2hs15.emediapp;
 
+import android.app.Activity;
+import android.view.View.OnClickListener;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -49,7 +52,6 @@ public class MainPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -107,11 +109,15 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
         if (id == R.id.action_settings) {
             return true;
         }
+        /*Manuel Pfister*/
+        if (id==R.id.navigate){
+            startActivity(new Intent (this, SubActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
     /*Manuel Pfister*/
-    public void buttondruck (View view){
-        setContentView(R.layout.layout2);
+   public void ZweitViewWechselTextButton (View view){
+    setContentView(R.layout.layout2);
     }
 
 
