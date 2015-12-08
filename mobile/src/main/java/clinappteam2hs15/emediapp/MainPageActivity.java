@@ -1,23 +1,21 @@
 package clinappteam2hs15.emediapp;
 
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.NotificationManagerCompat;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import simulationData.Medicationplan;
 
 /*
 * Activity der Startseite
@@ -27,7 +25,7 @@ import simulationData.Medicationplan;
 *   aktuell keine Aenderungen zum Default
 * Startseiten layout:
 *   activity_main_page.xml (Grundsaetzlicher Aufbau: Collapsing Toolbar, Floating Actionbutton) und
-*   content_main_page.xml (Scrollbarer Inhalt)
+*   overview_main_page.xmll (Scrollbarer Inhalt)
 *   (plus values)
 *
 * @author: Corina von Kaenel
@@ -36,12 +34,21 @@ import simulationData.Medicationplan;
 
 
 public class MainPageActivity extends AppCompatActivity {
-    public static final int NOTIFICATION_ID = 1;
 
-    private Button mAddMediIntakeButton;
-    private Medicationplan mMedicationplan;
-    private TextView mMedicationView;
-    private Button mMediRemNotificationButton;
+    /**
+     * The {@link android.support.v4.view.PagerAdapter} that will provide
+     * fragments for each of the sections. The
+     * {@link FragmentPagerAdapter} derivative will keep every
+     * loaded fragment in memory. If this becomes too memory intensive, it
+     * may be best to switch to a
+     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     */
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    /**
+     * The {@link ViewPager} that will host the section contents.
+     */
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,31 +68,16 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        // Ueber diesen Button soll eine Medikamenteneinnahme protokolliert werden können
-        mAddMediIntakeButton = (Button) findViewById(R.id.addMedIntake_button);
-        mAddMediIntakeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainPageActivity.this, R.string.medieinnahmeErfasst_toast, Toast.LENGTH_SHORT).show();
-            }
-        });
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        /* Temporaer soll dieser Button eine mediNotifikation auslösen
-        mMediRemNotificationButton = (Button) findViewById(R.id.mediIntakeReminder_button);
-        mMediRemNotificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            onMedReminderButtonClick(v);
-            }
-        }); */
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-/*
-ToDo: auf 2. Menuinhalt verschieben.
-Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
-*/
-        mMedicationplan = new Medicationplan();
-        mMedicationView = (TextView) findViewById(R.id.Medication_textView);
-        mMedicationView.setText((CharSequence) mMedicationplan.getMedication());
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
     }
 
@@ -109,47 +101,84 @@ Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
         }
         return super.onOptionsItemSelected(item);
     }
-    /*Manuel Pfister*/
-    public void buttondruck (View view){
-        setContentView(R.layout.layout2);
+
+   
+
+   
+
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class PlaceholderFragment extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public PlaceholderFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static PlaceholderFragment newInstance(int sectionNumber) {
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            return rootView;
+        }
     }
 
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    // (author cvk) fuer Notifikationserzeugung auch bei geschlossener App
-    private PendingIntent getActivityPendingIntent() {
-        Intent activityIntent = new Intent(this, MainPageActivity.class);
-        activityIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        return PendingIntent.getActivity(this, 0, activityIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            if (position == 0)
+                return new MainOverviewTab();
+
+            return PlaceholderFragment.newInstance(position + 1);
+        }
+
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Übersicht";
+                case 1:
+                    return "Mediplan";
+                case 2:
+                    return "Kontakte";
+            }
+            return null;
+        }
     }
-
-    // (author cvk) 1. Schritt der Notifikationserstellung auf Knopfdruck und mit Fixtext
-    // ToDo: Notifikation aufgrund geplanter Uhrzeit starten und Daten für die Erinnerung auslesen
-    public void onMedReminderButtonClick(View view) {
-
-        PendingIntent medReminderPendingIntent = getActivityPendingIntent();
-
-        Notification medicationNotification = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_2pill)
-                .setContentTitle("Dafalgan 500mg")
-                .setContentText("Einnahme für 6 Uhr geplant")
-                .setContentIntent(medReminderPendingIntent)
-                .setPriority(Notification.PRIORITY_HIGH)
-                /* Visibility Private reduziert bei gelocktem Screen den Informationsgehalt der Notification
-                .setVisibility(Notification.VISIBILITY_PRIVATE) */
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setCategory(Notification.CATEGORY_STATUS)
-                .build();
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(NOTIFICATION_ID, medicationNotification);
-
-    }
-    public void onUpdateStandardNotificationButtonClick(View view) {
-
-    }
-
-
-
 
 }
