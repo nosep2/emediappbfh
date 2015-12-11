@@ -32,6 +32,7 @@
     <string name="second_View_TextButton">Change 2.View Button</string>
     <string name="next">Next</string>
     <string name="title_activity_sub">SubActivity</string>
+    <string name="title_activity_med_reminder">MedReminderActivity</string>
 
 
 </resources>

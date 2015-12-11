@@ -32,7 +32,7 @@ import android.widget.TextView;
 *   aktuell keine Aenderungen zum Default
 * Startseiten layout:
 *   activity_main_page.xml (Grundsaetzlicher Aufbau: Collapsing Toolbar, Floating Actionbutton) und
-*   overview_main_page.xmll (Scrollbarer Inhalt)
+*   content_main_page.xmll (Scrollbarer Inhalt)
 *   (plus values)
 *
 * @author: Corina von Kaenel

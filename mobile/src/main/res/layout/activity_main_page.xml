@@ -5,6 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
     tools:context=".MainPageActivity">
+     <include layout="@layout/content_main_page" /> <!-- Manuel Pfister damit content view editierbar bleibt,
+     muss diese Zeile stehen, auch wenn dadurch das App nicht wie gewohnt läuft-->
+
 
     <android.support.design.widget.AppBarLayout android:id="@+id/app_bar"
         android:fitsSystemWindows="true" android:layout_height="@dimen/app_bar_height"
