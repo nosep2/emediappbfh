@@ -36,7 +36,7 @@ public class MainOverviewTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout of this view
-        View view = inflater.inflate(R.layout.overview_main_page, container, false);
+        View view = inflater.inflate(R.layout.content_overview_main_page, container, false);
 
         //Ueber diesen Button soll eine Medikamenteneinnahme protokolliert werden können
         mAddMediIntakeButton = (Button) view.findViewById(R.id.addMedIntake_button);
@@ -49,9 +49,13 @@ public class MainOverviewTab extends Fragment {
 
         /* Temporaer soll dieser Button eine mediNotifikation auslösen*/
         mMediRemNotificationButton = (Button) view.findViewById(R.id.mediIntakeReminder_button);
-        mMediRemNotificationButton.setOnClickListener(new View.OnClickListener() {
+        mMediRemNotificationButton.setOnClickListener(
+                new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              Intent intent =new Intent();
+               //PendingIntent pIntent =PendingIntent.getActivity(MainOverviewTab.this,0,intent,0);*/
+                //)
             onMedReminderButtonClick(v);
             }
         });
@@ -69,9 +73,11 @@ public class MainOverviewTab extends Fragment {
 
     }
 
+
     // (author cvk) fuer Notifikationserzeugung auch bei geschlossener App
+    // (editor Mp) geändert von Starseitenstart bei Anwahl der Notifikation zu SubActivity.java
     private PendingIntent getActivityPendingIntent() {
-        Intent activityIntent = new Intent(getActivity(), MainPageActivity.class);
+        Intent activityIntent = new Intent(getActivity(), MedReminderActivity.class);
         activityIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         return PendingIntent.getActivity(getActivity(), 0, activityIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);

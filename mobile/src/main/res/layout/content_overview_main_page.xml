@@ -7,6 +7,8 @@
     tools:showIn="@layout/activity_main_page" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context=".MainOverviewTab">
 
+
+
     <!-- Corina von Kaenel: Layout Uebersichtstab V.0.1 -->
     <LinearLayout
         android:layout_width="match_parent"

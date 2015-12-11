@@ -28,6 +28,7 @@ import android.widget.TextView;
 * Dazu benötigt werden Informationen/Instruktionen in folgenden files:
 * mobile Manifest:
 *   aktuell keine Aenderungen zum Default
+
 * Startseiten java-klassen (Fragment mit den Inhalten der Tabs)
 *   MainOverviewTab -> Übersichtstab
  *  ToDo -> Mediplantab
@@ -146,7 +147,7 @@ public class MainPageActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.content_mediplan_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;

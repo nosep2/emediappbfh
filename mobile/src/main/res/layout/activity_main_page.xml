@@ -5,6 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
     tools:context=".MainPageActivity">
+    <!-- <include layout="@layout/content_overview_main_page" />
+    Manuel Pfister damit content view editierbar bleibt,muss diese Zeile stehen, auch wenn dadurch das App nicht wie gewohnt läuft
+    Corina von Känel 11.12.15: Auskommentiert, da wir in der Startansicht eine View mit 3 Tabs, also 3 Contents haben und nicht eine..
+    Da unten der ViewPager die einzelnen Inhalte der Tab lädt, wird ansonsten der Inhalt des ersten Tab 2x geladen -->
+
 
     <android.support.design.widget.AppBarLayout android:id="@+id/app_bar"
         android:fitsSystemWindows="true" android:layout_height="@dimen/app_bar_height"
