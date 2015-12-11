@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Manuel Pfister-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -30,8 +31,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eingenommen"
-        android:id="@+id/eingenommenbutton"
+        android:text="später"
+        android:id="@+id/spaeter_Eingenommenbutton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="124dp" />
@@ -39,16 +40,16 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButton_Eingenommen"
         android:layout_alignParentStart="true"
         android:src="@drawable/kaestchen_mit_haken"
-        android:layout_above="@+id/eingenommenbutton"
+        android:layout_above="@+id/spaeter_Eingenommenbutton"
         android:layout_below="@+id/editText" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton2"
+        android:id="@+id/imageButton_NichtEingenommen"
         android:src="@drawable/kreis_mit_kreuz"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/analogClock2" />
