@@ -1,12 +1,6 @@
 package clinappteam2hs15.emediapp;
 
-import android.app.Activity;
-import android.view.View.OnClickListener;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,18 +18,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/*
+/** @author: Corina von Kaenel
+ *
 * Activity der Startseite
+ *
+ * Die Activity ist aufgebaut mit einer ActionBar, die wenn nötig durch scrollen verkleinert wird. Die ActionBar ist das "Header"-Element
+ * Sie enthält eine Tabbar für die Navigation zwischen den Startseiten Tabs: ÜBERSICHT, MEDIPLAN UND KONTAKTE
 *
 * Dazu benötigt werden Informationen/Instruktionen in folgenden files:
 * mobile Manifest:
 *   aktuell keine Aenderungen zum Default
-* Startseiten layout:
-*   activity_main_page.xml (Grundsaetzlicher Aufbau: Collapsing Toolbar, Floating Actionbutton) und
-*   overview_main_page.xmll (Scrollbarer Inhalt)
-*   (plus values)
+* Startseiten java-klassen (Fragment mit den Inhalten der Tabs)
+*   MainOverviewTab -> Übersichtstab
+ *  ToDo -> Mediplantab
+ *  ToDo -> Kontaktetab
 *
-* @author: Corina von Kaenel
+* Startseiten layout:
+*   activity_main_page.xml (Grundsaetzlicher Aufbau: Collapsing Toolbar, Floating Actionbutton, Tabbar für die 3 Tabs der Seite) und
+*   Tab 1: overview_main_page.xml (Inhalt Tab Uebersicht)
+*   Tab 2: mediplan_main_page.xml (Inhalt Tab Mediplan)
+ *  Tab 3: contacts_main_page.xml (Inhalt Tab Kontakte)
+ *
+*   (plus values/ Strings)
 *
 */
 
@@ -53,7 +57,7 @@ public class MainPageActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
-     * The {@link ViewPager} that will host the section contents.
+     * ViewPager beinhalten die Inhalte der einzelnen Fragmente (Tabs)
      */
     private ViewPager mViewPager;
 
@@ -74,14 +78,15 @@ public class MainPageActivity extends AppCompatActivity {
             }
         });
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+        // Den Adapter kreiern, welcher die Fragmente der drei Startseitentabs
+        // dieser Starseitenaktivität "Activity = MainPageActivityCreate" enthält
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
+        // Den ViewPager mit dem Sectionsadapter erstellen
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        //Das Layout für die 3 Fragmente bietet das Tablayout. Dieses enthält die Viewpager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -89,7 +94,7 @@ public class MainPageActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Das Menu "infaten": hierdurch werden die Items in die Action Bar hinzugefügt.
         getMenuInflater().inflate(R.menu.menu_main_page, menu);
         return true;
     }

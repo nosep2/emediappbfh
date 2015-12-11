@@ -19,6 +19,11 @@ import simulationData.Medicationplan;
 
 /**
  * Created by corina on 08.12.15.
+ *
+ * Dies ist der Inhalt des Übersichts Tabs in der Startactivität (MainPageActivity.java)
+ * dazugehöriges Layout: overview_main_page.xml
+ *
+ * In der Ansicht befindet sich ein analoge Uhr, das Datum und Informationen zu den Medikationseinnahme am aktuellen Tag, sowie Termine
  */
 public class MainOverviewTab extends Fragment {
 
@@ -51,14 +56,14 @@ public class MainOverviewTab extends Fragment {
             }
         });
 
-        /*
-        ToDo: auf 2. Menuinhalt verschieben.
+
+        /*ToDo: auf 2. Menuinhalt verschieben.
         Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
 
         mMedicationplan = new Medicationplan();
-        mMedicationView = (TextView) findViewById(R.id.Medication_textView);
-        mMedicationView.setText((CharSequence) mMedicationplan.getMedication());
-*/
+        mMedicationView = (TextView) getActivity().findViewById(R.id.Medication_textView);
+        mMedicationView.setText((CharSequence) mMedicationplan.getMedication());*/
+
 
         return view;
 
