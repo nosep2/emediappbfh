@@ -2,8 +2,6 @@ package clinappteam2hs15.emediapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,9 +34,9 @@ import android.widget.TextView;
 *
 * Startseiten layout:
 *   activity_main_page.xml (Grundsaetzlicher Aufbau: Collapsing Toolbar, Floating Actionbutton, Tabbar für die 3 Tabs der Seite) und
-*   Tab 1: overview_main_page.xml (Inhalt Tab Uebersicht)
-*   Tab 2: mediplan_main_page.xml (Inhalt Tab Mediplan)
- *  Tab 3: contacts_main_page.xml (Inhalt Tab Kontakte)
+*   Tab 1: content_overview_main_page.xml (Inhalt Tab Uebersicht)
+*   Tab 2: content_mediplan_main_page.xml (Inhalt Tab Mediplan)
+ *  Tab 3: content_contacts_main_page.xml (Inhalt Tab Kontakte)
  *
 *   (plus values/ Strings)
 *
@@ -66,18 +64,10 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+        setTitle("eMedikationsApp");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         // Den Adapter kreiern, welcher die Fragmente der drei Startseitentabs
         // dieser Starseitenaktivität "Activity = MainPageActivityCreate" enthält

@@ -2,11 +2,16 @@ package clinappteam2hs15.emediapp;
 
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +46,9 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
     private static final String LOG_TAG = "MyHeart";
     private GoogleApiClient mGoogleApiClient;
 
+    private static final int NOTIFICATION_REQUEST_CODE = 1;
+    private static final int NOTIFICATION_ID = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +74,7 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
 
         mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(Wearable.API).build();
         mGoogleApiClient.connect();
-        }
+    }
 
 
     @Override
@@ -94,6 +102,23 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
     public void onFinishActivity(View view) {
         setResult(RESULT_OK);
         mSensorManager.unregisterListener(this);
+        finish();
+    }
+    /**
+     * Handles the button to launch a notification.
+     */
+    public void showNotification(View view) {
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle(getString(R.string.notification_title))
+                .setContentText(getString(R.string.notification_text))
+                .setSmallIcon(R.drawable.ic_heart)
+                .addAction(R.drawable.ic_heart,
+                        getText(R.string.action_launch_activity),
+                        PendingIntent.getActivity(this, NOTIFICATION_REQUEST_CODE,
+                                new Intent(this, EMediPulsActivity.class),
+                                PendingIntent.FLAG_UPDATE_CURRENT))
+                .build();
+        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification);
         finish();
     }
 

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- comment cvk
+Watchviewstub is a container that automatically inflates the right layout, based on the screen shape-->
 <android.support.wearable.view.WatchViewStub
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,12 +10,6 @@
     app:rectLayout="@layout/rect_activity_emedi_puls"
     app:roundLayout="@layout/round_activity_emedi_puls" tools:context=".EMediPulsActivity"
     tools:deviceIds="wear">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="heartrate"
-        android:id="@+id/heartrate_text"/>
 
 
 

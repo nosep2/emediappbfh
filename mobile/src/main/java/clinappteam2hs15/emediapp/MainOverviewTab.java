@@ -68,6 +68,14 @@ public class MainOverviewTab extends Fragment {
         mMedicationView = (TextView) getActivity().findViewById(R.id.Medication_textView);
         mMedicationView.setText((CharSequence) mMedicationplan.getMedication());*/
 
+       /* FloatingActionButton fab_overview_main = (FloatingActionButton) getActivity().findViewById(R.id.fab_overview_main);
+        fab_overview_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }); */
 
         return view;
 
@@ -82,6 +90,12 @@ public class MainOverviewTab extends Fragment {
         return PendingIntent.getActivity(getActivity(), 0, activityIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
+// ToDo Intent zum Start der Pulsmessung auf der Watch //
+    /*private PendingIntent getPulsActivityPendingIntent(){
+        Intent pulsActivityIntent = new Intent(getActivity(), wear.EMediPulsActivity.class);
+        activityIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        return PendingIntent.getActivity(getActivity(), 0, activityIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);  */
 
     // (author cvk) 1. Schritt der Notifikationserstellung auf Knopfdruck und mit Fixtext
     // ToDo: Notifikation aufgrund geplanter Uhrzeit starten und Daten für die Erinnerung auslesen

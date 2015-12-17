@@ -5,4 +5,9 @@
     <string name="hello_square">Hello Square World!</string>
     <string name="pulsrateSPhone_text">Pulsrate</string>
 
+    <string name="show_notification"> Show Notification </string>
+    <string name="notification_title"> Pulsmessung starten </string>
+    <string name="notification_text"> Bildschirm 2 Mal nach links schieben </string>
+    <string name="action_launch_activity">Pulsmessung jetzt starten</string>
+
 </resources>
