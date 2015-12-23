@@ -13,7 +13,7 @@ import android.widget.ListView;
  * Created by corina on 23.12.15.
  *
  * Dies ist der Inhalt des Mediplan Tabs in der Startactivität (MainPageActivity.java)
- * dazugehöriges Layout: mediplan_main_page.xml
+ * dazugehöriges Layout: content_mediplan_main_page.xml
  *
  * In der Ansicht befindet sich ein analoge Uhr, das Datum und Informationen zu den Medikationseinnahme am aktuellen Tag, sowie Termine
  */

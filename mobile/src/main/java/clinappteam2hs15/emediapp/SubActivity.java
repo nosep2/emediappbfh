@@ -74,12 +74,11 @@ public class SubActivity extends AppCompatActivity {
         });
     }
 
-    // (author cvk) fuer Notifikationserzeugung auch bei geschlossener App
+    // (author cvk) fuer Notifikationserzeugung auch bei geschlossener App //(author Mp) geändert auf eigene Klasse(SubActivity.java)
     private PendingIntent getActivityPendingIntent() {
-        Intent activityIntent = new Intent(this, MainPageActivity.class);
+        Intent activityIntent = new Intent(this, MedReminderActivity.class);
         activityIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        return PendingIntent.getActivity(this, 0, activityIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getActivity(this, 0, activityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
 
