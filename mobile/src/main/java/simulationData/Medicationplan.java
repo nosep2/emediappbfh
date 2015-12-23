@@ -1,6 +1,8 @@
 package simulationData;
 
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 /**
@@ -13,7 +15,7 @@ public class Medicationplan {
     private ArrayList<Medication> mMediplan = new ArrayList<Medication>();
 
 
-    public Medicationplan(){
+    public Medicationplan(Context context){
         initData();
     }
 
@@ -21,14 +23,12 @@ public class Medicationplan {
         if (!mMediplan.isEmpty())
         {mMediplan.clear();}
 
-        mMediplan.add(new Medication(1001, "Allopur 100mg","Allopurinol", "Tablette", "standard", "morgens: 1 Tablette", "ab 12.Aug", "noEnd", "SPZ Biel, Innere Medizin, 2503 Biel", "Gicht - Senkung der Harnsäure"));
+        mMediplan.add(new Medication(1001, "Allopur 100mg", "Allopurinol", "Tablette", "standard", "morgens: 1 Tablette", "ab 12.Aug", "noEnd", "SPZ Biel, Innere Medizin, 2503 Biel", "Gicht - Senkung der Harnsäure"));
 
     }
 
-    public String getMedication() {
-     /* add  try catch */
-        Medication mMedi = mMediplan.get(0);
-        return mMedi.toString();
+    public ArrayList<Medication> getmMediplan() {
+        return mMediplan;
     }
 
 }

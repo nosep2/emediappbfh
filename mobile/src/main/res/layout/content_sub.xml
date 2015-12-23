@@ -12,4 +12,33 @@
     tools:context="clinappteam2hs15.emediapp.SubActivity"
     tools:showIn="@layout/activity_sub">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/addMedIntake_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addMedIntake_button"/>
+
+    <Button
+        android:id="@+id/mediIntakeReminder_button"
+        android:text="MediReminder Notification"
+        android:onClick="onMedReminderButtonClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--Manuel Pfister @+id/button-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/second_View_TextButton"
+        android:onClick="ZweitViewWechselTextButton"
+        android:id="@+id/zweitViewWechselTextButton" />
+
+</LinearLayout>
+
 </RelativeLayout>

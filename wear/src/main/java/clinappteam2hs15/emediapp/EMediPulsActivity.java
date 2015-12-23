@@ -59,9 +59,10 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mTextView = (TextView) stub.findViewById(R.id.heartrate_text);
+                mHeartRateText = (TextView) findViewById(R.id.heartrate_text);
             }
         });
-        mHeartRateText = (TextView) findViewById(R.id.heartrate_text);
+
         mSensorManager = ((SensorManager)getSystemService(SENSOR_SERVICE));
         List<Sensor> sensorList = mSensorManager.getSensorList(Sensor.TYPE_ALL);
         for(Sensor s : sensorList) {
@@ -81,7 +82,7 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
     public void onSensorChanged(SensorEvent event) {
         mTextView.setText(Float.toString(event.values[0]));
 
-        mHeartRateText.setText(Float.toString(event.values[0]));
+//        mHeartRateText.setText(Float.toString(event.values[0]));
         Log.d("watchapp", String.format("%s %f %d", event.sensor.getStringType(), event.values[0], event.timestamp));
     }
     @Override
@@ -105,13 +106,15 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
         finish();
     }
     /**
-     * Handles the button to launch a notification.
+     * cvk: Notifikation um die Pulsmessung zu starten
+     * ToDo: Timer starten oder auf Phone anzeigen, wenn Battery Charging
      */
     public void showNotification(View view) {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle(getString(R.string.notification_title))
                 .setContentText(getString(R.string.notification_text))
                 .setSmallIcon(R.drawable.ic_heart)
+                .setDefaults(Notification.DEFAULT_VIBRATE)
                 .addAction(R.drawable.ic_heart,
                         getText(R.string.action_launch_activity),
                         PendingIntent.getActivity(this, NOTIFICATION_REQUEST_CODE,

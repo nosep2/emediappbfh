@@ -7,7 +7,7 @@
 
     <string name="show_notification"> Show Notification </string>
     <string name="notification_title"> Pulsmessung starten </string>
-    <string name="notification_text"> Bildschirm 2 Mal nach links schieben </string>
-    <string name="action_launch_activity">Pulsmessung jetzt starten</string>
+    <string name="notification_text"> Bildschirm 1 Mal nach links schieben </string>
+    <string name="action_launch_activity">klicken um die Pulsmessung zu starten</string>
 
 </resources>

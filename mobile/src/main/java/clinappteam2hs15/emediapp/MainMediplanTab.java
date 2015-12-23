@@ -6,31 +6,33 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import simulationData.Medicationplan;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 /**
- * Created by corina on 08.12.15.
+ * Created by corina on 23.12.15.
  *
- * Dies ist der Inhalt des Übersichts Tabs in der Startactivität (MainPageActivity.java)
- * dazugehöriges Layout: overview_main_page.xml
+ * Dies ist der Inhalt des Mediplan Tabs in der Startactivität (MainPageActivity.java)
+ * dazugehöriges Layout: mediplan_main_page.xml
  *
  * In der Ansicht befindet sich ein analoge Uhr, das Datum und Informationen zu den Medikationseinnahme am aktuellen Tag, sowie Termine
  */
-public class MainOverviewTab extends Fragment {
+public class MainMediplanTab extends Fragment {
 
-
-    private Medicationplan mMedicationplan;
-    private TextView mMedicationView;
-
+  //  private Button mCreateMediplanQrCode;
+  //  private Medicationplan mMedicationplan;
     public static final int NOTIFICATION_ID = 1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout of this view
-        View view = inflater.inflate(R.layout.content_overview_main_page, container, false);
+        View view = inflater.inflate(R.layout.content_mediplan_main_page, container, false);
 
+        String[]myStringArray={"MediA", "MediB", "MediC"};
+        ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, myStringArray);
+
+        ListView medicationList = (ListView)view.findViewById(R.id.mediplan_listView);
+        medicationList.setAdapter(myAdapter);
 
         /*ToDo: auf 2. Menuinhalt verschieben.
         Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
