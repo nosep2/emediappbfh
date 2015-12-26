@@ -14,10 +14,14 @@
         <TextView
             android:id="@+id/lastUpdate_label"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/lastImportMediplan_text"/>
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/createMediplan_button"
+            />
     </LinearLayout>
 
     <ListView

@@ -23,6 +23,8 @@
     <string name="addMedIntake_button">Medikamenteneinnahme registrieren</string>
 
     <string name="medieinnahmeErfasst_toast">Medikamenteneinnahme "1 Tablette Beispielmedi 9:45" erfasst</string>
+    <string name="lastImportMediplan_text">"letze Änderung erfasst am\n" "10.1.2016 "</string>
+    <string name="createMediplan_button">Mediplan Barcode erstellen</string>
 
 
     <string name="action_settings">Settings</string>
@@ -33,6 +35,7 @@
     <string name="next">Next</string>
     <string name="title_activity_sub">SubActivity</string>
     <string name="title_activity_med_reminder">MedReminderActivity</string>
+
 
 
 </resources>

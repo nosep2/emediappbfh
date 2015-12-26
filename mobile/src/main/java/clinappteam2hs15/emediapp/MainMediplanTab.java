@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import simulationData.Medication;
+import simulationData.Medicationplan;
+
 /**
  * Created by corina on 23.12.15.
  *
@@ -20,15 +25,24 @@ import android.widget.ListView;
 public class MainMediplanTab extends Fragment {
 
   //  private Button mCreateMediplanQrCode;
-  //  private Medicationplan mMedicationplan;
+    private Medicationplan mMedicationplan;
     public static final int NOTIFICATION_ID = 1;
+    ArrayList<String>mMediTitelDose = new ArrayList<String>();
+    ArrayList<Medication>mMedications = new ArrayList<Medication>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout of this view
         View view = inflater.inflate(R.layout.content_mediplan_main_page, container, false);
 
+        /* Versuch die Daten als Strings in einer Arraylist zu übergeben
+        mMedications = mMedicationplan.getmMediplan();
+        for (Medication mMedication: mMedications){
+        String mMediTD = mMedication.getmMedi();
+        mMediTitelDose.add(mMediTD);
+        }*/
         String[]myStringArray={"MediA", "MediB", "MediC"};
+
         ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, myStringArray);
 
         ListView medicationList = (ListView)view.findViewById(R.id.mediplan_listView);

@@ -31,7 +31,9 @@ public class SubActivity extends AppCompatActivity {
 
     private Button mAddMediIntakeButton;
     private Button mMediRemNotificationButton;
-    public static final int NOTIFICATION_ID = 1;
+    private Button mPulsNotificationButton;
+    public static final int NOTIFICATION_ID1 = 1;
+    public static final int NOTIFICATION_ID2 = 2;
 
 
     @Override
@@ -57,11 +59,19 @@ public class SubActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent();
-                        //PendingIntent pIntent =PendingIntent.getActivity(MainOverviewTab.this,0,intent,0);*/
-                        //)
                         onMedReminderButtonClick(v);
                     }
                 });
+        /* Temporaer soll dieser Button eine mediNotifikation auslösen
+        mPulsNotificationButton = (Button) findViewById(R.id.pulsMeasReminder_button);
+        mPulsNotificationButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        onPulsMeasReminderButtonClick(v);
+                    }
+                });*/
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -82,16 +92,16 @@ public class SubActivity extends AppCompatActivity {
     }
 
 
-    // (author cvk) 1. Schritt der Notifikationserstellung auf Knopfdruck und mit Fixtext
-    // ToDo: Notifikation aufgrund geplanter Uhrzeit starten und Daten für die Erinnerung auslesen
+    // (author cvk) MedikamentenErinnerung: Notifikationserstellung auf Knopfdruck fuer die Praesentation
+
     public void onMedReminderButtonClick(View view) {
 
         PendingIntent medReminderPendingIntent = getActivityPendingIntent();
 
         Notification medicationNotification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_2pill)
-                .setContentTitle("Medikamteneinnahme 6 Uhr")
-                .setContentText("mit dem Essen - 1 Tablette Dafalgan 500mg")
+                .setContentTitle("6 Uhr Einnahme- erinnerung")
+                .setContentText("mit dem Essen -" + "\n" + "1 Tablette Dafalgan 500mg")
                 .setContentIntent(medReminderPendingIntent)
                 .setPriority(Notification.PRIORITY_HIGH)
                 /* Visibility Private reduziert bei gelocktem Screen den Informationsgehalt der Notification
@@ -101,13 +111,31 @@ public class SubActivity extends AppCompatActivity {
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(NOTIFICATION_ID1, medicationNotification);
+
+    }
+
+
+    // (author cvk) Erinnerung fuer die Pulsmessung: Notifikationserstellung auf Knopfdruck fuer die Praesentation
+    /*public void onPulsMeasReminderButtonClick(View view) {
+
+        PendingIntent medReminderPendingIntent = getActivityPendingIntent();
+
+        Notification medicationNotification = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_2pill)
+                .setContentTitle("6 Uhr Einnahme- erinnerung")
+                .setContentText("mit dem Essen -" + "\n" + "1 Tablette Dafalgan 500mg")
+                .setContentIntent(medReminderPendingIntent)
+                .setPriority(Notification.PRIORITY_HIGH)
+                /* Visibility Private reduziert bei gelocktem Screen den Informationsgehalt der Notification
+                .setVisibility(Notification.VISIBILITY_PRIVATE)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setCategory(Notification.CATEGORY_STATUS)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(NOTIFICATION_ID, medicationNotification);
 
-    }
-
-
-    public void onUpdateStandardNotificationButtonClick(View view) {
-
-    }
+    }*/
 
 }
