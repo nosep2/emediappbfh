@@ -15,8 +15,9 @@ import simulationData.Medicationplan;
  *
  * Dies ist der Inhalt des Übersichts Tabs in der Startactivität (MainPageActivity.java)
  * dazugehöriges Layout: overview_main_page.xml
+ * (extends Fragment, da die Tabview mit "Fragmenten" arbeitet
  *
- * In der Ansicht befindet sich ein analoge Uhr, das Datum und Informationen zu den Medikationseinnahme am aktuellen Tag, sowie Termine
+ * In der Ansicht befindet sich eine analoge Uhr, das Datum und Informationen zu den Medikationseinnahme am aktuellen Tag
  */
 public class MainOverviewTab extends Fragment {
 

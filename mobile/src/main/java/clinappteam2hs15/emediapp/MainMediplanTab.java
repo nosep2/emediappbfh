@@ -3,13 +3,14 @@ package clinappteam2hs15.emediapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import simulationData.Medication;
 import simulationData.Medicationplan;
@@ -20,52 +21,87 @@ import simulationData.Medicationplan;
  * Dies ist der Inhalt des Mediplan Tabs in der Startactivität (MainPageActivity.java)
  * dazugehöriges Layout: content_mediplan_main_page.xml
  *
- * In der Ansicht befindet sich ein analoge Uhr, das Datum und Informationen zu den Medikationseinnahme am aktuellen Tag, sowie Termine
+ * In der Ansicht befindet sich der Button um die Qr-Barcode-Generierung des Medikamentenplanes zu generieren
+ * und die Auflistung der aktuellen Medikation, mit dem Datum, wann die letzte Änderung erfolgte
  */
 public class MainMediplanTab extends Fragment {
 
-  //  private Button mCreateMediplanQrCode;
-    private Medicationplan mMedicationplan;
+    /**
+     * Innere Klassen für die Auflistung der Medikamente, nach aktueller Vorgabe von Android Studio
+     *
+     */
+    private class MedicationHolder extends RecyclerView.ViewHolder {
+        /*
+        Auflistung der gewünschten Attribute einer Medikation als TextViews
+         */
+        public TextView mMedicationName;
+        public TextView mMedicationApplicationForm;
+        public TextView mMedicationVerschrieber;
+        public TextView mMedicationHinweise;
+
+        public MedicationHolder(View itemView) {
+            super(itemView);
+            mMedicationName = (TextView) itemView.findViewById(R.id.list_item_medication_name);
+            mMedicationApplicationForm = (TextView) itemView.findViewById(R.id.list_item_medication_application);
+            mMedicationVerschrieber = (TextView) itemView.findViewById(R.id.list_item_medication_verschreiber);
+            mMedicationHinweise = (TextView) itemView.findViewById(R.id.list_item_medication_hinweise);
+        }
+
+        public void bind(Medication m) {
+            mMedicationName.setText(m.getmMedi());
+            mMedicationApplicationForm.setText(m.getmApplikationsform());
+            mMedicationVerschrieber.setText(m.getmVerschreiber());
+            mMedicationHinweise.setText(m.getmHinweiseBemerkung());
+        }
+    }
+
+    //Adapter für die ListView
+    private class MedicationAdapter extends RecyclerView.Adapter<MedicationHolder> {
+        private List<Medication> mMedications;
+        public MedicationAdapter(List<Medication> medications) {
+            mMedications = medications;
+        }
+
+        //der Adapter kreiert einen ViewHolder
+        public MedicationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
+
+            View v = inflater.inflate(R.layout.list_item_medication, parent, false);
+
+            return new MedicationHolder(v);
+        }
+
+                public void onBindViewHolder(MedicationHolder holder, int position) {
+            Medication m = mMedications.get(position);
+            holder.bind(m);
+        }
+
+        // Anzahl Medikamente in der aktuellen Medikation
+        public int getItemCount() {
+            return mMedications.size();
+        }
+    }
+
     public static final int NOTIFICATION_ID = 1;
-    ArrayList<String>mMediTitelDose = new ArrayList<String>();
-    ArrayList<Medication>mMedications = new ArrayList<Medication>();
+    private RecyclerView medicationListView;
+    private MedicationAdapter mMedicationAdapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout of this view
         View view = inflater.inflate(R.layout.content_mediplan_main_page, container, false);
 
-        /* Versuch die Daten als Strings in einer Arraylist zu übergeben
-        mMedications = mMedicationplan.getmMediplan();
-        for (Medication mMedication: mMedications){
-        String mMediTD = mMedication.getmMedi();
-        mMediTitelDose.add(mMediTD);
-        }*/
-        String[]myStringArray={"MediA", "MediB", "MediC"};
+        medicationListView = (RecyclerView)view.findViewById(R.id.mediplan_listView);
+        medicationListView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ArrayAdapter<String> myAdapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, myStringArray);
-
-        ListView medicationList = (ListView)view.findViewById(R.id.mediplan_listView);
-        medicationList.setAdapter(myAdapter);
-
-        /*ToDo: auf 2. Menuinhalt verschieben.
-        Ziel: Der Medikationsplan soll ausgelesen und dargestellt werden.
-
-        mMedicationplan = new Medicationplan();
-        mMedicationView = (TextView) getActivity().findViewById(R.id.Medication_textView);
-        mMedicationView.setText((CharSequence) mMedicationplan.getMedication());*/
-
-       /* FloatingActionButton fab_overview_main = (FloatingActionButton) getActivity().findViewById(R.id.fab_overview_main);
-        fab_overview_main.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
-
+        UpdateUI();
         return view;
 
     }
-
+    private void UpdateUI()
+    {
+        List<Medication> medications = Medicationplan.Instance().getmMediplan();
+        mMedicationAdapter = new MedicationAdapter(medications);
+        medicationListView.setAdapter(mMedicationAdapter);
+    }
 }
