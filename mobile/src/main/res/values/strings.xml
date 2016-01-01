@@ -9,16 +9,12 @@
         "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
     </string>
 
-    <!-- Corina von Kaenel: Strings der eMediApp V.0.1 -->
-    <string name="overview1_text">
-    "das Datum \n\n"
-    "letzte Einnahme 12:00 \n
-    erledigt\n\n\n"
-    "nächste Einnahme 18:00 \n
-    in 4.5 Stunden"
-    </string>
+    <!-- Corina von Kaenel: Strings der eMediApp  -->
+    <string name="overview1_text">"letzte Einnahme 12:00: ok"</string>
+     <string name="overview2_text">"nächste Einnahme 18:00: in 4.5 Stunden"</string>
+    <string name="currentCalender_text">kein Termineintrag</string>
     <string name="pulsrateSPhone_text">
-    "Anzeige der letzten Pulsmessung und falls die Pulsmessung gerade stattfindet, die aktuelle Messung"
+    "Pulsmessung heute 10:05: 107"
     </string>
     <string name="addMedIntake_button">Medikamenteneinnahme registrieren</string>
 
@@ -33,8 +29,9 @@
     <!--Manuel Pfister-->
     <string name="second_View_TextButton">Change 2.View Button</string>
     <string name="next">Next</string>
-    <string name="title_activity_sub">SubActivity</string>
+    <string name="title_activity_sub">Demo</string>
     <string name="title_activity_med_reminder">MedReminderActivity</string>
+    <string name="step_count">Schritte: %d</string>
 
 
 

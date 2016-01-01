@@ -12,18 +12,21 @@ Layout des Tab Mediplan
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/colorBackgroundHighlighted">
 
         <TextView
             android:id="@+id/lastUpdate_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:textColor="@color/lastUpdated"
             android:text="@string/lastImportMediplan_text"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/colorButtonDarker"
+            android:textColor="@color/colorWhiteText"
+            android:layout_marginTop="10dp"
             android:text="@string/createMediplan_button"
             />
     </LinearLayout>

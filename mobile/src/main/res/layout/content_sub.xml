@@ -20,7 +20,7 @@
 
     <Button
         android:id="@+id/addMedIntake_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/addMedIntake_button"/>
 
@@ -31,13 +31,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!--Manuel Pfister @+id/button-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/second_View_TextButton"
-        android:onClick="ZweitViewWechselTextButton"
-        android:id="@+id/zweitViewWechselTextButton" />
+        <Button
+            android:id="@+id/sendNotificationToWearable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onMedReminderButtonClick"
+            android:text="Pulsmessung über Notifikation starten"/>
+
+        <!--Manuel Pfister @+id/button
+        cv: wird aktuell für keine Demofunktion gebraucht, daher ausgegraut
+        <Button
+            android:id="@+id/zweitViewWechselTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="ZweitViewWechselTextButton"
+            android:text="@string/second_View_TextButton"/>
+            -->
 
 </LinearLayout>
 

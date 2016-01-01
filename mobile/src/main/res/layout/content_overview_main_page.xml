@@ -27,30 +27,76 @@
                 android:layout_width="188dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/analogClock"
-                android:layout_weight="0.54"
-                android:background="#aef9f7" />
+                android:layout_weight="0.54" />
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/text_margin"
-                android:text="@string/overview1_text" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/content_overview_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_margin="@dimen/text_margin"
+                    tools:text="11.11.2011"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:text="@string/currentCalender_text"/>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/text_margin"
-            android:text="@string/pulsrateSPhone_text" />
-
-        <TextView android:id="@+id/Medication_textView"
-            android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/text_margin"
-            />
-
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_overview_main"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundDarker"
+        android:orientation="vertical">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_email" />
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/overview1_text"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:text="@string/overview2_text"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonDarker"
+            android:textColor="@color/colorWhiteText"
+            android:layout_margin="20dp"
+            android:id="@+id/addMediIntake_button"
+            android:text="Medikamenteneinnahme Erfassen"/>
     </LinearLayout>
+
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/pulsrateSPhone_text" />
+
+        <TextView
+            android:id="@+id/step_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="Schritte: "
+            tools:text="stepcount" />
+
+
+
+</LinearLayout>
 
 
 </android.support.v4.widget.NestedScrollView>

@@ -3,6 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorVerschreibung">#FF0099CC</color>
-    <color name="lastUpdated">#C2185B</color>
+    <color name="colorAccentViolett">#C2185B</color>
+    <color name="colorButtonBright">#C5CAE9</color>
+    <color name="colorButtonDarker">#536DFE</color>
+    <color name="colorBackgroundBright">#E3F2FD</color>
+    <color name="colorBackgroundDarker">#E0F2F1</color>
+    <color name="colorBackgroundHighlighted">#F8BBD0</color>
+    <color name="colorWhiteText">#FFFFFF</color>
+
 </resources>

@@ -2,28 +2,33 @@ package clinappteam2hs15.emediapp;
 
 
 import android.app.Activity;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.NodeApi;
+import com.google.android.gms.wearable.PutDataMapRequest;
+import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.List;
 
 
 /*
+*Created by corina
+* @author: Corina von Kaenel
+*
 * Pulsmesser starten und auf der Smartwatch, die aktuell gemessene Herzfrequenz anzeigen
 *
 * Dazu benötigt werden Informationen/Instruktionen in folgenden files:
@@ -33,7 +38,7 @@ import java.util.List;
 * wear layout:
 *   round_activity_emedi_puls.xml (plus values)
 *
-* @author: Corina von Kaenel
+*
 *
 */
 
@@ -45,9 +50,10 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
     private Sensor mHeartRateSensor;
     private static final String LOG_TAG = "MyHeart";
     private GoogleApiClient mGoogleApiClient;
-
-    private static final int NOTIFICATION_REQUEST_CODE = 1;
-    private static final int NOTIFICATION_ID = 1;
+    private static final String TAG = "wear";
+    private Sensor mStepCounter;
+    private int count = 0;
+    private static final String STEP_COUNT = "/stepcount";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,17 +79,86 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
         boolean res = mSensorManager.registerListener(this, mHeartRateSensor, SensorManager.SENSOR_DELAY_NORMAL);
         Log.d(LOG_TAG, " sensor registered: " + (res ? "yes" : "no"));
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(Wearable.API).build();
+        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        res = mSensorManager.registerListener(this, mStepCounter, SensorManager.SENSOR_DELAY_NORMAL);
+        Log.d(LOG_TAG, " sensor registered: " + (res ? "yes" : "no"));
+
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(Bundle bundle) {
+
+                    }
+
+                    @Override
+                    public void onConnectionSuspended(int i) {
+
+                    }
+                })
+                .addApi(Wearable.API).build();
+
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
+    }
+
+    private void increaseCounter(final int count) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PutDataMapRequest putDataMapReq = PutDataMapRequest.create("/count");
+                putDataMapReq.getDataMap().putInt("StepCount", count);
+                PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+
+
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
+                byte [] stepBytes = ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(count).array();
+                for (Node node : nodes.getNodes()) {
+
+                    MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(mGoogleApiClient, node.getId(), STEP_COUNT, stepBytes).await();
+                    if (!result.getStatus().isSuccess()) {
+                        Log.e(TAG, "ERROR");
+                    } else {
+                        Log.i(TAG, "Success sent to: " + node.getDisplayName());
+                    }
+                }
+
+            }
+        });
+        t.start();
+
     }
 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        mTextView.setText(Float.toString(event.values[0]));
+        if (event.sensor.getType() == Sensor.TYPE_HEART_RATE) {
+            mTextView.setText(Float.toString(event.values[0]));
 
 //        mHeartRateText.setText(Float.toString(event.values[0]));
-        Log.d("watchapp", String.format("%s %f %d", event.sensor.getStringType(), event.values[0], event.timestamp));
+            Log.d("watchapp", String.format("heart rate %s %f %d", event.sensor.getStringType(), event.values[0], event.timestamp));
+
+            //  increaseCounter((int) event.values[0]);
+        }
+
+        if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+            Log.d("watchapp", String.format("step counter rate %s %f %d", event.sensor.getStringType(), event.values[0], event.timestamp));
+            float stepCount = event.values[0];
+            increaseCounter((int) stepCount);
+
+        }
     }
     @Override
     protected void onPause() {
@@ -96,7 +171,6 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
 
     }
 
-
     /**
      * Handles the button press to finish this activity and take the user back to the Home.
      */
@@ -105,25 +179,7 @@ public class EMediPulsActivity extends Activity implements SensorEventListener{
         mSensorManager.unregisterListener(this);
         finish();
     }
-    /**
-     * cvk: Notifikation um die Pulsmessung zu starten
-     * ToDo: Timer starten oder auf Phone anzeigen, wenn Battery Charging
-     */
-    public void showNotification(View view) {
-        Notification notification = new NotificationCompat.Builder(this)
-                .setContentTitle(getString(R.string.notification_title))
-                .setContentText(getString(R.string.notification_text))
-                .setSmallIcon(R.drawable.ic_heart)
-                .setDefaults(Notification.DEFAULT_VIBRATE)
-                .addAction(R.drawable.ic_heart,
-                        getText(R.string.action_launch_activity),
-                        PendingIntent.getActivity(this, NOTIFICATION_REQUEST_CODE,
-                                new Intent(this, EMediPulsActivity.class),
-                                PendingIntent.FLAG_UPDATE_CURRENT))
-                .build();
-        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification);
-        finish();
-    }
+
 
 
 }
