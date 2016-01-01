@@ -13,7 +13,7 @@ Layout der Medikationslisteneinträge
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         tools:text="name">
 
@@ -23,7 +23,7 @@ Layout der Medikationslisteneinträge
         android:id="@+id/list_item_medication_application"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:layout_toRightOf="@id/list_item_medication_name"
         android:paddingLeft="4dp"
         tools:text="app">
