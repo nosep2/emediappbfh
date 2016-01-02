@@ -71,6 +71,11 @@ public class Medication {
 
     }
 
+    /*
+    @return getQrRepresentation:
+    generiert String gemäss der Struktur beschrieben im Dokument "Medikationsplan_aktualiesiert Seite 18.
+    Jeder String in der Methode entspricht einer Tabellenzeile
+     */
     public String getQrRepresentation() {
         String mediplanAttributes = "|||||||||";
         String receiver = "||||";
