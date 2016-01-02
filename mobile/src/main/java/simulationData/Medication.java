@@ -70,4 +70,12 @@ public class Medication {
         return getmMedi() + " " + getmVerschreibung() + " " + getmVerschreiber();
 
     }
+
+    public String getQrRepresentation() {
+        String mediplanAttributes = "|||||||||";
+        String receiver = "||||";
+        String printedBy = " ||||||";
+
+        return mediplanAttributes + receiver + printedBy;
+    }
 }

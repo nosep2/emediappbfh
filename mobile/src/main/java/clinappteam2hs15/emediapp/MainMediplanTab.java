@@ -114,7 +114,7 @@ public class MainMediplanTab extends Fragment {
 
         imgView.setImageBitmap(bmp);
 
-
+    // Todo: Dialogbox (popup) wo der Qr-Code dargestellt wird
 
     }
 }
