@@ -1,6 +1,7 @@
 package clinappteam2hs15.emediapp;
 
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -103,5 +105,16 @@ public class MainMediplanTab extends Fragment {
         List<Medication> medications = Medicationplan.Instance().getmMediplan();
         mMedicationAdapter = new MedicationAdapter(medications);
         medicationListView.setAdapter(mMedicationAdapter);
+    }
+
+    public void onBarcodeClick(View view) {
+        QrCode qr = new QrCode();
+        Bitmap bmp = qr.generateQrcode();
+        ImageView imgView = new ImageView(getActivity());
+
+        imgView.setImageBitmap(bmp);
+
+
+
     }
 }
