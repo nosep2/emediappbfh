@@ -170,7 +170,7 @@ public class SubActivity extends AppCompatActivity {
 
         Notification medicationNotification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_2pill)
-                .setContentTitle("6 Uhr Einnahme- erinnerung")
+                .setContentTitle("6 Uhr Einnahme- Erinnerung")
                 .setContentText("mit dem Essen -" + "\n" + "1 Tablette Dafalgan 500mg")
                 .setContentIntent(medReminderPendingIntent)
                 .setPriority(Notification.PRIORITY_HIGH)

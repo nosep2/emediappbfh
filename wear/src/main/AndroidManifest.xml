@@ -24,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
+        <!-- Corina von Kaenel: Service für den Notifikationsaufruf von "mobile"  -->
         <service
             android:name=".NotificationUpdateService"
             android:enabled="true"

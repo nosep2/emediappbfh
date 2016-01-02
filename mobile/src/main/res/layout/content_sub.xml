@@ -39,7 +39,7 @@
             android:text="Pulsmessung über Notifikation starten"/>
 
         <!--Manuel Pfister @+id/button
-        cv: wird aktuell für keine Demofunktion gebraucht, daher ausgegraut
+        corina: wird aktuell für keine Demofunktion gebraucht, daher ausgegraut
         <Button
             android:id="@+id/zweitViewWechselTextButton"
             android:layout_width="wrap_content"

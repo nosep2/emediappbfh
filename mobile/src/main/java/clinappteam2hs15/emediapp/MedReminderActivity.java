@@ -1,5 +1,6 @@
 package clinappteam2hs15.emediapp;
 /*Manuel Pfister*/
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class MedReminderActivity extends AppCompatActivity {
 
@@ -60,4 +62,14 @@ public class MedReminderActivity extends AppCompatActivity {
         });
     }
 
+    public void onBarcodeClick(View view) {
+        QrCode qr = new QrCode();
+        Bitmap bmp = qr.generateQrcode();
+        ImageView imgView = new ImageView(this);
+
+        imgView.setImageBitmap(bmp);
+
+
+
+    }
 }

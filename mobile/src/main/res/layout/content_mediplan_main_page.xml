@@ -28,6 +28,7 @@ Layout des Tab Mediplan
             android:textColor="@color/colorWhiteText"
             android:layout_marginTop="10dp"
             android:text="@string/createMediplan_button"
+            android:onClick="onBarcodeClick"
             />
     </LinearLayout>
 
