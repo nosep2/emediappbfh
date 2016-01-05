@@ -22,13 +22,14 @@ Layout des Tab Mediplan
             android:layout_margin="@dimen/text_margin"
             android:text="@string/lastImportMediplan_text"/>
         <Button
+            android:id="@+id/createQrCode_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorButtonDarker"
             android:textColor="@color/colorWhiteText"
             android:layout_marginTop="10dp"
             android:text="@string/createMediplan_button"
-            android:onClick="onBarcodeClick"
+
             />
     </LinearLayout>
 

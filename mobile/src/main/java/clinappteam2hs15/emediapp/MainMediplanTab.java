@@ -1,6 +1,7 @@
 package clinappteam2hs15.emediapp;
 
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -87,6 +90,8 @@ public class MainMediplanTab extends Fragment {
     public static final int NOTIFICATION_ID = 1;
     private RecyclerView medicationListView;
     private MedicationAdapter mMedicationAdapter;
+    private Button mCreateQrBarcode;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -95,6 +100,13 @@ public class MainMediplanTab extends Fragment {
 
         medicationListView = (RecyclerView)view.findViewById(R.id.mediplan_listView);
         medicationListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mCreateQrBarcode = (Button) view.findViewById(R.id.createQrCode_button);
+        mCreateQrBarcode.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onBarcodeClick(v);
+            }
+        });
 
         UpdateUI();
         return view;
@@ -105,16 +117,21 @@ public class MainMediplanTab extends Fragment {
         List<Medication> medications = Medicationplan.Instance().getmMediplan();
         mMedicationAdapter = new MedicationAdapter(medications);
         medicationListView.setAdapter(mMedicationAdapter);
+
     }
 
     public void onBarcodeClick(View view) {
         QrCode qr = new QrCode();
         Bitmap bmp = qr.generateQrcode();
+
+        Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         ImageView imgView = new ImageView(getActivity());
-
         imgView.setImageBitmap(bmp);
-
-    // Todo: Dialogbox (popup) wo der Qr-Code dargestellt wird
+        dialog.setContentView(imgView);
+        dialog.show();
+        
 
     }
 }

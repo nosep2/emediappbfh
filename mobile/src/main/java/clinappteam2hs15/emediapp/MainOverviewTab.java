@@ -51,6 +51,7 @@ public class MainOverviewTab extends Fragment
         TextView dateTextView = (TextView) view.findViewById(R.id.content_overview_date);
         dateTextView.setText(dateFormat.format(Calendar.getInstance().getTime()));
 
+
         // Textview für die Anzeige, der auf der Wear gemessenen Schritte
         mStepCount = (TextView) view.findViewById(R.id.step_count);
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
