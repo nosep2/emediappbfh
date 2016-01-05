@@ -13,19 +13,29 @@ import simulationData.Medicationplan;
 
 /**
  * Created by Philipp on 11.12.2015.
+ * Updated by Corina on 2.01.2016
+ *
+ * @return QrCode:
+ * Generates a Qr-Code from the Information of the Medication using the Google Library zxing
+ * returns a bmp file ready to be displayed by the MainMediplanTab
+ *
  */
+
 public class QrCode {
     QRCodeWriter writer = new QRCodeWriter();
     Medicationplan currentMedicationplan = new Medicationplan();
+    Medication medication = new Medication(0,"","","","","","","","","","");
     //content
 
 
     public Bitmap generateQrcode() {
 
-        String medicationplanAsString = "";
+
+        String medicationplanAsString=medication.getQrRepresentationPerson();
+
 
         for(Medication medication: currentMedicationplan.getmMediplan()){
-            String m = medication.getQrRepresentation();
+            String m = medication.getQrRepresentationMedi();
             medicationplanAsString = medicationplanAsString + m;
         }
 

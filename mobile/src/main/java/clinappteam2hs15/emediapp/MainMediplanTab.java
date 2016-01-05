@@ -120,6 +120,10 @@ public class MainMediplanTab extends Fragment {
 
     }
 
+    /**
+     * Shows the button for the Qr-code generating
+     * returns upon clicking a dialog window with the generated code ready to be read
+     */
     public void onBarcodeClick(View view) {
         QrCode qr = new QrCode();
         Bitmap bmp = qr.generateQrcode();
