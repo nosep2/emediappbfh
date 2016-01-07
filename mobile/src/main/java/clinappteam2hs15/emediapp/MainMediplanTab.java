@@ -43,17 +43,20 @@ public class MainMediplanTab extends Fragment {
         public TextView mMedicationApplicationForm;
         public TextView mMedicationVerschrieber;
         public TextView mMedicationHinweise;
+        public TextView mMedicationDosage;
 
         public MedicationHolder(View itemView) {
             super(itemView);
             mMedicationName = (TextView) itemView.findViewById(R.id.list_item_medication_name);
+            mMedicationDosage = (TextView) itemView.findViewById(R.id.list_item_medication_dosage);
             mMedicationApplicationForm = (TextView) itemView.findViewById(R.id.list_item_medication_application);
             mMedicationVerschrieber = (TextView) itemView.findViewById(R.id.list_item_medication_verschreiber);
             mMedicationHinweise = (TextView) itemView.findViewById(R.id.list_item_medication_hinweise);
         }
 
         public void bind(Medication m) {
-            mMedicationName.setText(m.getmMedi());
+            mMedicationName.setText(m.getmMediName());
+            mMedicationDosage.setText(m.getmDosage());
             mMedicationApplicationForm.setText(m.getmApplikationsform());
             mMedicationVerschrieber.setText(m.getmVerschreiber());
             mMedicationHinweise.setText(m.getmHinweiseBemerkung());
@@ -121,8 +124,8 @@ public class MainMediplanTab extends Fragment {
     }
 
     /**
-     * Shows the button for the Qr-code generating
-     * returns upon clicking a dialog window with the generated code ready to be read
+     * layout-file: content_mediplan_main_page.xml zeigt einen Button für die Qr-Code Generierung
+     * onBarcodeClick-Methode generiert auf Anwahl obigen Buttons eine Dialogbox (Popup), welche den generierten Qr-Code enthält
      */
     public void onBarcodeClick(View view) {
         QrCode qr = new QrCode();

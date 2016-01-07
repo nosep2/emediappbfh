@@ -18,13 +18,24 @@ Layout der Medikationslisteneinträge
         tools:text="name">
 
     </TextView>
+    <TextView
+        android:id="@+id/list_item_medication_dosage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/list_item_medication_name"
+        android:paddingLeft="4dp"
+        android:textSize="14sp"
+
+        tools:text="dosage">
+
+    </TextView>
 
     <TextView
         android:id="@+id/list_item_medication_application"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:layout_toRightOf="@id/list_item_medication_name"
+        android:layout_toRightOf="@id/list_item_medication_dosage"
         android:paddingLeft="4dp"
         tools:text="app">
     </TextView>

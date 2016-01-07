@@ -6,7 +6,6 @@ package simulationData;
  *
  * Medication ist die Verschreibung zum Medikament, das heisst Einnahmehäufigkeit, Verschreibungsart, Verschreibung, Dauer der Einnahme und Verschreiber
  * Zur Einfachheit wird zu diesem Stadium der Umsetzung:
- * - die Verschreibungsart und Verschreibung nicht auseinandergenommen
  * - das Medikament nicht als eigenes Objekt erstellt sondern ist Teil der Medication
  * ToDo: Klassenstruktur zu Medikament, Medikation und  Verschreibungsart/Verschreibung erstellen
  */
@@ -14,7 +13,7 @@ public class Medication {
 
     private int mNumber;
     private String mDosage;
-    private String mMedi;
+    private String mMediName;
     private String mWirkstoff;
     private String mApplikationsform;
     private String mVerschreibungsArt;
@@ -25,11 +24,11 @@ public class Medication {
     private String mHinweiseBemerkung;
 
 
-    public Medication (int number, String medi, String dosage, String wirkstoff, String applikationsform, String verschreibungsArt, String verschreibung, String einnahmestart ,String einnahmeDauer,  String verschreiber, String hinweiseBemerkung){
+    public Medication (int number, String mediName, String dosage, String wirkstoff, String applikationsform, String verschreibungsArt, String verschreibung, String einnahmestart ,String einnahmeDauer,  String verschreiber, String hinweiseBemerkung){
 
         mNumber = number;
         mDosage = dosage;
-        mMedi = medi;
+        mMediName = mediName;
         mWirkstoff = wirkstoff;
         mApplikationsform = applikationsform;
         mVerschreibungsArt = verschreibungsArt;
@@ -44,8 +43,8 @@ public class Medication {
         return mNumber;
     }
 
-        public String getmMedi() {
-        return mMedi;
+        public String getmMediName() {
+        return mMediName;
     }
 
     public String getmDosage() {
@@ -85,7 +84,7 @@ public class Medication {
     }
 
     public String toString() {
-        return getmMedi() + " " + getmVerschreibung() + " " + getmVerschreiber();
+        return getmMediName() + " " + getmVerschreibung() + " " + getmVerschreiber();
     }
 
     /*
@@ -105,7 +104,7 @@ public class Medication {
     }
 
     public String getQrRepresentationMedi() {
-        String Medikament = getmWirkstoff()+"|"+getmMedi()+"|"+getmDosage()+"|"+getmApplikationsform()+"|"+getmVerschreibung()+"|"+getmHinweiseBemerkung()+"\n";
+        String Medikament = getmWirkstoff()+"|"+ getmMediName()+"|"+getmDosage()+"|"+getmApplikationsform()+"|"+getmVerschreibung()+"|"+getmHinweiseBemerkung()+"\n";
 
 
         return Medikament;

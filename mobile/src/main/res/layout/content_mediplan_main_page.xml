@@ -33,11 +33,12 @@ Layout des Tab Mediplan
             />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mediplan_listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+    <!-- Die Anzeige des einzelnen Medikamentes wird in list_item_medication.xml definiert -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mediplan_listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
 
 
-</LinearLayout>
+    </LinearLayout>
