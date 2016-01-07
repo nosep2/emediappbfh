@@ -35,7 +35,7 @@ import java.util.Calendar;
 public class MainOverviewTab extends Fragment
         implements DataApi.DataListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, MessageApi.MessageListener
 {
-
+    // GoogleApiClient für den Datenaustausch zwischen Phone und Smartwatch
     private GoogleApiClient mGoogleApiClient;
     public static String TAG = "mobile";
     private static final String STEP_COUNT = "/stepcount";
