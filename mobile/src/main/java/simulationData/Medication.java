@@ -104,7 +104,7 @@ public class Medication {
     }
 
     public String getQrRepresentationMedi() {
-        String Medikament = getmWirkstoff()+"|"+ getmMediName()+"|"+getmDosage()+"|"+getmApplikationsform()+"|"+getmVerschreibung()+"|"+getmHinweiseBemerkung()+"\n";
+        String Medikament = getmWirkstoff()+"|"+ getmMediName()+"|"+getmDosage()+"|"+getmApplikationsform()+"|"+getmVerschreibung()+"|\n";
 
 
         return Medikament;
