@@ -61,7 +61,7 @@ public class MainOverviewTab extends Fragment
                 .build();
 
 
-        updateCount(100);
+        updateCount(50);
 
 
         return view;

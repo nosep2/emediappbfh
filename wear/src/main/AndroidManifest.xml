@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
 
-        <!-- Corina von Kaenel: Service für den Notifikationsaufruf von "mobile"  -->
+        <!-- Corina von Kaenel: Service für den Notifikationsaufruf von "mobile"
+             siehe Javaklasse NotificationUpdateService-->
         <service
             android:name=".NotificationUpdateService"
             android:enabled="true"

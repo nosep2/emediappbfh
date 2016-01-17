@@ -12,6 +12,9 @@ import com.google.android.gms.wearable.WearableListenerService;
 
 /**
  * Created by corina
+ * Dieser NotificationUpdateService hört (listens) auf den Aufruf vom mobilen device her und erstellt die Notifikation
+ * um die Pulsmessung zu starten
+ * Der Service ist im Manifest der Wear registriert
  */
 public class NotificationUpdateService extends WearableListenerService {
 
